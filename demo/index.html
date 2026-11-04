@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StudyFlow 智学伴侣 · W1 Demo 框架</title>
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div class="stage">
+
+  <header class="stage-head">
+    <div class="brand">
+      <div class="brand-mark">SF</div>
+      <div class="brand-txt">
+        <h1>StudyFlow 智学伴侣 <em>v0.1</em></h1>
+        <p>第二十届全国大学生软件创新大赛 · 赛题1「AI 赋能学习生产力」 · 第一周 Demo 框架</p>
+      </div>
+    </div>
+    <div class="stage-tools">
+      <button class="btn btn-ghost" id="majorBtn" type="button">场景：计算机科学与技术</button>
+      <button class="btn btn-primary" id="tourBtn" type="button">一键演示闭环</button>
+    </div>
+  </header>
+
+  <div class="stage-body">
+
+    <aside class="panel loop-panel">
+      <div class="panel-t">学习闭环</div>
+      <div class="loop-flow">采集 → 理解 → 积累 → 复用 → 反馈</div>
+      <ol class="loop-list" id="loopList">
+        <li data-step="capture" class="on"><i>1</i><div><b>采集</b><small>语音 / 图像 / 手写协同</small></div></li>
+        <li data-step="note"><i>2</i><div><b>理解</b><small>结构化 + 可检查可修正</small></div></li>
+        <li data-step="knowledge"><i>3</i><div><b>积累 / 复用</b><small>个人知识库 RAG 检索</small></div></li>
+        <li data-step="handoff"><i>4</i><div><b>反馈 / 接续</b><small>跨设备任务状态不丢</small></div></li>
+      </ol>
+      <div class="notice">
+        <b>W1 脚手架 · 不是成品</b>
+        <p>界面与交互为真；ASR / OCR / LLM / RAG / 跨设备均为 Mock 适配器。W3 技术 Spike 定端云方案后由 A 替换。</p>
+      </div>
+      <div class="meta-list">
+        <span>参赛单位：中南大学</span>
+        <span>团队：计算机科学与技术 × 3 ＋ 文学院 × 1</span>
+        <span>对应周计划：W1 脚手架 → W2 可点击原型</span>
+      </div>
+    </aside>
+
+    <div class="phone-area">
+      <div class="phone">
+        <div class="phone-top"><span>9:41</span><span class="phone-brand">StudyFlow</span><span>5G · 86%</span></div>
+        <div class="phone-screen">
+
+          <section class="screen on" id="s-capture">
+            <div class="s-head"><h2>采集</h2><span class="chip" id="courseChip">数据结构 · 第3讲</span></div>
+            <div class="rec-card">
+              <div class="rec-row"><b id="sessionTitle">课堂记录 · 未开始</b><span id="sessionClock">00:00</span></div>
+              <div class="wave" id="wave"></div>
+              <div class="rec-hint" id="recHint">点击下方按钮模拟多模态采集</div>
+            </div>
+            <div class="cap-grid">
+              <button class="cap" data-cap="audio" type="button"><i>MIC</i>录音</button>
+              <button class="cap" data-cap="image" type="button"><i>IMG</i>拍照</button>
+              <button class="cap" data-cap="hand" type="button"><i>PEN</i>手写</button>
+            </div>
+            <div class="s-sub">识别流 <small>MockASR / MockOCR</small></div>
+            <div class="stream" id="stream"><div class="empty">暂无采集内容</div></div>
+            <button class="btn btn-wide" id="structureBtn" type="button" disabled>生成结构化笔记</button>
+          </section>
+
+          <section class="screen" id="s-note">
+            <div class="s-head"><h2>结构化笔记</h2><span class="chip">可检查 · 可修正</span></div>
+            <div class="note-wrap" id="noteWrap"><div class="empty">尚未生成笔记，请先在「采集」页生成</div></div>
+            <div class="s-sub">理解反馈</div>
+            <div class="feedback" id="feedback">生成笔记后，这里会给出「疑问整理 / 重点标记」建议。</div>
+          </section>
+
+          <section class="screen" id="s-knowledge">
+            <div class="s-head"><h2>个人知识库</h2><span class="chip">RAG 检索</span></div>
+            <div class="search-row">
+              <input id="kbInput" type="text" placeholder="以前学过什么 / 相关内容在哪 / 能用于当前问题">
+              <button class="btn btn-sm" id="kbBtn" type="button">检索</button>
+            </div>
+            <div class="kb-question" id="kbQuestion"></div>
+            <div class="s-sub">命中资料 <small>共 <b id="kbCount">0</b> 条</small></div>
+            <div class="kb-list" id="kbList"></div>
+          </section>
+
+          <section class="screen" id="s-handoff">
+            <div class="s-head"><h2>任务接续</h2><span class="chip">控制权留给人</span></div>
+            <div class="task-card">
+              <div class="task-t" id="taskTitle">当前任务：未建立</div>
+              <div class="task-q" id="taskQuestion">先在知识库里点「用于当前问题」</div>
+            </div>
+            <div class="s-sub">进度卡片 <small>需用户确认才接力，不自动同步</small></div>
+            <div class="steps" id="handoffSteps"></div>
+            <div class="opp-card">
+              <b>OPPO 能力（Mock）</b>
+              <p>互联开放能力：设备发现 / 跨设备传输　·　超级碰一碰：NFC 一碰分享</p>
+            </div>
+            <button class="btn btn-wide" id="handoffBtn" type="button" disabled>确认接力到下一设备</button>
+          </section>
+
+        </div>
+        <nav class="tabbar">
+          <button class="tab on" data-tab="capture" type="button"><i>◎</i>采集</button>
+          <button class="tab" data-tab="note" type="button"><i>≡</i>笔记</button>
+          <button class="tab" data-tab="knowledge" type="button"><i>▤</i>知识库</button>
+          <button class="tab" data-tab="handoff" type="button"><i>⇄</i>接续</button>
+        </nav>
+      </div>
+      <div class="phone-cap">移动端优先 · 手机采集 → 平板手写 → PC 创作</div>
+    </div>
+
+    <aside class="panel inspect-panel">
+      <div class="panel-t">框架检查</div>
+      <div class="kv"><span>当前阶段</span><b id="iStage">采集</b></div>
+      <div class="kv"><span>场景样本</span><b id="iMajor">计算机科学与技术</b></div>
+      <div class="kv"><span>任务状态</span><b id="iTask">未建立</b></div>
+      <div class="kv"><span>接力进度</span><b id="iHandoff">0 / 3</b></div>
+      <div class="kv"><span>控制权</span><b>用户确认制</b></div>
+      <div class="panel-t mt">模块 / 负责人</div>
+      <ul class="mods">
+        <li><b>B</b><span>界面与交互 <small>index.html · app.css · app.js</small></span></li>
+        <li><b>D</b><span>场景与语料 <small>data.js（中南大学样本）</small></span></li>
+        <li><b>A</b><span>ASR/OCR/LLM/RAG/端云 <small>adapters.js（W3 替换）</small></span></li>
+        <li><b>队长</b><span>闭环串联与演示 <small>README.md</small></span></li>
+      </ul>
+      <div class="panel-t mt">运行日志</div>
+      <div class="log" id="log">[W1] 骨架就绪，等待操作…</div>
+    </aside>
+
+  </div>
+</div>
+<script src="js/data.js"></script>
+<script src="js/adapters.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

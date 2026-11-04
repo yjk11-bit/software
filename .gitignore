@@ -1,0 +1,21 @@
+# ===== 系统 / 编辑器 =====
+Thumbs.db
+Desktop.ini
+.DS_Store
+.vscode/
+.idea/
+
+# ===== 临时与测试产物 =====
+_check.png
+_test*.html
+*.log
+__pycache__/
+*.pyc
+
+# ===== 依赖与构建产物（后续接入前后端时生效） =====
+node_modules/
+dist/
+build/
+*.local
+
+# 说明：附件1-8（官方 PDF/DOCX/ZIP）与提取的 .txt 均属参赛交付物，保留纳入版本管理。
