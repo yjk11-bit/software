@@ -6,6 +6,7 @@ Desktop.ini
 .idea/
 
 # ===== 临时与测试产物 =====
+.archify/
 _check.png
 _test*.html
 *.log

@@ -1,0 +1,590 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "StudyFlow 智学伴侣 · 软件工作流程架构图（赛题1 AI 赋能学习生产力）",
+    "locale": "zh-CN",
+    "output": ".archify/architecture-studyflow-20261107-203700/studyflow.html",
+    "quality_profile": "showcase"
+  },
+  "components": [
+    {
+      "id": "student",
+      "type": "external",
+      "label": "学生 · 移动终端",
+      "sublabel": "手机 / 平板 / 手写笔 / 语音",
+      "icon": "person",
+      "pos": [
+        16,
+        60
+      ],
+      "size": [
+        215,
+        80
+      ]
+    },
+    {
+      "id": "ext_llm",
+      "type": "cloud",
+      "label": "大模型 / 端侧推理",
+      "sublabel": "LLM · ASR · OCR",
+      "pos": [
+        327,
+        60
+      ],
+      "size": [
+        215,
+        80
+      ]
+    },
+    {
+      "id": "ext_oppo",
+      "type": "cloud",
+      "label": "OPPO 互联开放能力",
+      "sublabel": "超级碰一碰 · 多设备接续",
+      "pos": [
+        638,
+        60
+      ],
+      "size": [
+        215,
+        80
+      ]
+    },
+    {
+      "id": "ext_search",
+      "type": "cloud",
+      "label": "AI 联网搜索（受限）",
+      "sublabel": "仅脱敏查询 · 不发学生隐私",
+      "pos": [
+        949,
+        60
+      ],
+      "size": [
+        215,
+        80
+      ]
+    },
+    {
+      "id": "ui_course",
+      "type": "frontend",
+      "label": "交互层① 课程模块",
+      "sublabel": "六入口 · 课程—章节—知识点",
+      "pos": [
+        16,
+        240
+      ],
+      "size": [
+        215,
+        80
+      ]
+    },
+    {
+      "id": "ui_study",
+      "type": "frontend",
+      "label": "交互层② 对话 / 作业",
+      "sublabel": "苏格拉底 · 四级作业 A–D",
+      "pos": [
+        327,
+        240
+      ],
+      "size": [
+        215,
+        80
+      ]
+    },
+    {
+      "id": "ui_handoff",
+      "type": "frontend",
+      "label": "交互层③ 多设备壳",
+      "sublabel": "跨设备接续 · OPPO 差异化",
+      "tag": "移动端",
+      "pos": [
+        638,
+        240
+      ],
+      "size": [
+        215,
+        80
+      ]
+    },
+    {
+      "id": "ui_review",
+      "type": "frontend",
+      "label": "交互层④ 复习 / 计划",
+      "sublabel": "期末出题 · 打卡 · 可回溯",
+      "pos": [
+        949,
+        240
+      ],
+      "size": [
+        215,
+        80
+      ]
+    },
+    {
+      "id": "ai_rag",
+      "type": "backend",
+      "label": "AI① RAG 溯源问答",
+      "sublabel": "点回课件页码 / 导图节点",
+      "pos": [
+        16,
+        420
+      ],
+      "size": [
+        215,
+        80
+      ]
+    },
+    {
+      "id": "ai_socr",
+      "type": "backend",
+      "label": "AI② 苏格拉底四步",
+      "sublabel": "诊断→追问→阈值→漏洞卡",
+      "pos": [
+        327,
+        420
+      ],
+      "size": [
+        215,
+        80
+      ]
+    },
+    {
+      "id": "ai_hw",
+      "type": "backend",
+      "label": "AI③ 四级作业 A–D",
+      "sublabel": "D 仅触发开放 · 强制复盘",
+      "pos": [
+        638,
+        420
+      ],
+      "size": [
+        215,
+        80
+      ]
+    },
+    {
+      "id": "ai_exam",
+      "type": "backend",
+      "label": "AI④ 期末复习出题",
+      "sublabel": "用户意愿优先 · 权重兜底",
+      "tag": "待商量",
+      "pos": [
+        949,
+        420
+      ],
+      "size": [
+        215,
+        80
+      ]
+    },
+    {
+      "id": "kg",
+      "type": "database",
+      "label": "知识结构层 · 知识图谱",
+      "sublabel": "课程—章节—知识点—前置关系",
+      "pos": [
+        16,
+        600
+      ],
+      "size": [
+        215,
+        80
+      ]
+    },
+    {
+      "id": "material",
+      "type": "database",
+      "label": "资料库层 · 多模态资料",
+      "sublabel": "课件 / 导图 / 教材 / 习题",
+      "pos": [
+        327,
+        600
+      ],
+      "size": [
+        215,
+        80
+      ]
+    },
+    {
+      "id": "objects",
+      "type": "database",
+      "label": "三核心数据对象",
+      "sublabel": "知识点 / 题目 / 错题·掌握度",
+      "pos": [
+        638,
+        600
+      ],
+      "size": [
+        215,
+        80
+      ]
+    },
+    {
+      "id": "adapters",
+      "type": "backend",
+      "label": "adapters.js 唯一边界",
+      "sublabel": "5 个 Mock → 真实实现可换",
+      "tag": "实现边界",
+      "pos": [
+        949,
+        600
+      ],
+      "size": [
+        215,
+        80
+      ]
+    },
+    {
+      "id": "learner",
+      "type": "database",
+      "label": "学生数据层",
+      "sublabel": "掌握度 · 错题本 · 提问 · 作业记录",
+      "pos": [
+        16,
+        780
+      ],
+      "size": [
+        215,
+        80
+      ]
+    },
+    {
+      "id": "audit",
+      "type": "security",
+      "label": "匿名聚合 & 审计",
+      "sublabel": "询问次数 → 群体难点热度",
+      "pos": [
+        327,
+        780
+      ],
+      "size": [
+        215,
+        80
+      ]
+    },
+    {
+      "id": "control",
+      "type": "security",
+      "label": "用户控制权",
+      "sublabel": "低置信度标黄 · 可检查可修正",
+      "pos": [
+        638,
+        780
+      ],
+      "size": [
+        215,
+        80
+      ]
+    },
+    {
+      "id": "guard",
+      "type": "security",
+      "label": "隐私边界出口管控",
+      "sublabel": "联网不带隐私 · 外发仅脱敏",
+      "icon": "security",
+      "pos": [
+        949,
+        780
+      ],
+      "size": [
+        215,
+        80
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "外部能力 · 受限出口（信任域之外）",
+      "wraps": [
+        "ext_llm",
+        "ext_oppo",
+        "ext_search"
+      ],
+      "pad": 12
+    },
+    {
+      "kind": "region",
+      "label": "① 交互层 · 移动端 / 多设备（端侧）",
+      "wraps": [
+        "ui_course",
+        "ui_study",
+        "ui_handoff",
+        "ui_review"
+      ],
+      "pad": 12
+    },
+    {
+      "kind": "region",
+      "label": "② AI 能力层 · 端云协同",
+      "wraps": [
+        "ai_rag",
+        "ai_socr",
+        "ai_hw",
+        "ai_exam"
+      ],
+      "pad": 12
+    },
+    {
+      "kind": "region",
+      "label": "③ 知识结构层 + 资料库层 + 实现边界",
+      "wraps": [
+        "kg",
+        "material",
+        "objects",
+        "adapters"
+      ],
+      "pad": 12
+    },
+    {
+      "kind": "security-group",
+      "label": "④ 隐私边界 · 学生数据不出域",
+      "wraps": [
+        "learner",
+        "audit",
+        "control",
+        "guard"
+      ],
+      "pad": 12
+    }
+  ],
+  "connections": [
+    {
+      "id": "c01",
+      "from": "student",
+      "to": "ui_course",
+      "label": "多模态输入",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "c02",
+      "from": "ui_course",
+      "to": "ai_rag",
+      "label": "检索 / 溯源请求",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "c03",
+      "from": "ai_rag",
+      "to": "kg",
+      "label": "按知识点检索",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "c04",
+      "from": "kg",
+      "to": "learner",
+      "label": "知识点→掌握度",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "c05",
+      "from": "ext_llm",
+      "to": "ui_study",
+      "label": "端云推理支撑",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "c06",
+      "from": "ui_study",
+      "to": "ai_socr",
+      "label": "苏格拉底四步",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "c07",
+      "from": "ai_socr",
+      "to": "material",
+      "label": "溯源课件页码",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "c08",
+      "from": "ext_oppo",
+      "to": "ui_handoff",
+      "label": "跨设备能力",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "c09",
+      "from": "ui_handoff",
+      "to": "ai_hw",
+      "label": "多端作业接续",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "c10",
+      "from": "ai_hw",
+      "to": "objects",
+      "label": "错题 / 掌握度",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "c11",
+      "from": "objects",
+      "to": "control",
+      "label": "可检查可修正",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "c12",
+      "from": "ext_search",
+      "to": "ui_review",
+      "label": "仅补资源 · 考试时间",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "c13",
+      "from": "ui_review",
+      "to": "ai_exam",
+      "label": "必出 / 排除",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "c14",
+      "from": "ai_exam",
+      "to": "adapters",
+      "label": "规则引擎",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "c15",
+      "from": "adapters",
+      "to": "guard",
+      "label": "脱敏出口",
+      "variant": "security",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "c16",
+      "from": "kg",
+      "to": "material",
+      "label": "知识点关联",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "c17",
+      "from": "material",
+      "to": "objects",
+      "label": "6 标签入库",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "c18",
+      "from": "objects",
+      "to": "adapters",
+      "label": "统一边界",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "c19",
+      "from": "ai_socr",
+      "to": "ai_hw",
+      "label": "降级脚手架",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "c20",
+      "from": "learner",
+      "to": "audit",
+      "label": "匿名化",
+      "variant": "security",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "c21",
+      "from": "audit",
+      "to": "control",
+      "label": "匿名热度",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "c22",
+      "from": "control",
+      "to": "guard",
+      "label": "出口管控",
+      "variant": "security",
+      "fromSide": "right",
+      "toSide": "left"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "① 具体工作流：把一次学习办完",
+      "items": [
+        "采集：语音 / 图像 / 手写 / 课件导入；语音转文字 + 确认",
+        "理解：结构化笔记，低置信度标黄，可检查可修正",
+        "积累：按 6 标签（课程·章节·知识点·难度·来源·版本）入资料库",
+        "复用：RAG 溯源问答 → 苏格拉底四步 → 知识漏洞卡",
+        "反馈：错题本 + 掌握度 → 期末复习出题 → 学习计划表"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "② 怎么实现（单一事实来源）",
+      "items": [
+        "adapters.js 是唯一边界：5 个 Mock（ASR / OCR / LLM / RAG / Handoff）",
+        "保持入参 / 返回形状不变，换真实实现时 B 的界面不改",
+        "三核心数据对象：知识点 / 题目 / 错题·掌握度记录",
+        "W3 技术 Spike：A 定端侧 vs 云端 ASR / OCR",
+        "P0 交步1–3 可演示闭环；步4–8 交完整方案"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "③ 出题机制（待商量 · W8 前定案）",
+      "items": [
+        "用户设置 → 必出白名单 / 排除黑名单优先于权重",
+        "用户不设置 → 权重兜底 0.4/0.2/0.2/0.15/0.05（草案，勿改）",
+        "依据补充：单知识点表现 + 知识点串通（前置 / 关联）表现",
+        "群体询问次数只做匿名聚合热度，不压过本人；出题可解释"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "④ 隐私边界怎么保护",
+      "items": [
+        "学生数据层在域内：掌握度 / 错题 / 提问 / 作业记录一律不外发",
+        "AI 联网搜索只带课程目标，结果标来源，不发学生隐私",
+        "询问次数 → 匿名聚合难点热度，不识别个体",
+        "跨设备接力须用户确认；语音转文字须确认",
+        "结论强制溯源 + 低置信度标黄防幻觉；D 模式防抄答案"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "⑤ 阶段与后置（保护 01.15）",
+      "items": [
+        "P0 初赛 W1–W7：步1–3 可演示闭环 + 完整方案",
+        "P1 区域赛 W8–W12：步4–5 + OPPO 上架 + 20+ 人真实验证",
+        "P2/P3 全国赛：步7 学习计划表",
+        "最后添加的待办：语音问答 / 视频切片 / 关联课程"
+      ]
+    }
+  ]
+}
