@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 临时占位前景：字母 SF，正式版换产品 Logo -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,34 L54,74 M38,34 L70,34 M38,54 L64,54 M38,74 L70,74"
+        android:strokeColor="#2E6BE6"
+        android:strokeWidth="6"
+        android:strokeLineCap="round" />
+</vector>

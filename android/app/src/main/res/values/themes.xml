@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Compose 应用统一用 NoActionBar 系统主题，颜色由 MaterialTheme 管理 -->
+    <style name="Theme.StudyFlow" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>
