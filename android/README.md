@@ -18,7 +18,7 @@
 ## 二、环境版本（本周已在本机验证）
 
 - Windows 11 + Temurin JDK 17（`JAVA_HOME=D:\Scoop\apps\temurin17-jdk\current`）
-- Android Studio（winget 安装）+ SDK 命令行工具（`~/tools/android-sdk`，含 platforms;android-35 / build-tools;35.0.0 / platform-tools）
+- Android Studio（winget 安装）+ SDK 命令行工具（`C:\Android\sdk`，含 platforms;android-35 / build-tools;35.0.0 / platform-tools；放在纯英文路径，避免 AS 模拟器对中文路径的报错）
 - Gradle 发行版走**腾讯镜像**（`gradle/wrapper/gradle-wrapper.properties`），依赖仓库走**阿里云镜像**（`settings.gradle.kts`），国内网络可直接构建
 
 ## 三、如何构建
@@ -34,6 +34,7 @@ cd android
 
 - 首次构建需下载依赖（几分钟），之后增量秒级。
 - 若换机器：SDK 位置写进 `local.properties`（`sdk.dir=你的SDK路径`，该文件已 gitignore）；命令行构建需 JDK 17。
+- 模拟器 AVD 目录：本机已设环境变量 `ANDROID_AVD_HOME=C:\Android\.android`（Windows 用户名含中文时必需，否则模拟器起不来）。
 
 ## 四、模拟器启动
 
