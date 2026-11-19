@@ -155,5 +155,11 @@ private fun String?.isOn(base: String): Boolean =
     this != null && (this == base || this.startsWith("$base/"))
 
 private fun NavHostController.navigateSmart(route: String) {
-    navigate(route) { launchSingleTop = true }
+    // 底部导航传的是基路由，映射到带默认子 Tab 的真实路由
+    val resolved = when (route) {
+        "library" -> "library/materials"
+        "review" -> "review/review"
+        else -> route
+    }
+    navigate(resolved) { launchSingleTop = true }
 }
