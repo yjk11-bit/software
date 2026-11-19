@@ -1,0 +1,44 @@
+# StudyFlow · Android CI（W2 4.1：提交即构建 + 静态检查）
+# 触发：push / pull_request 中改动 android/ 或本工作流时
+name: Android CI
+
+on:
+  push:
+    paths:
+      - "android/**"
+      - ".github/workflows/android-ci.yml"
+  pull_request:
+    paths:
+      - "android/**"
+      - ".github/workflows/android-ci.yml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 配置 JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: 配置 Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: 编译 Debug APK
+        working-directory: android
+        run: chmod +x gradlew && ./gradlew assembleDebug --no-daemon
+
+      - name: 静态检查（Lint）
+        working-directory: android
+        run: ./gradlew lintDebug --no-daemon
+
+      - name: 上传 APK 产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
