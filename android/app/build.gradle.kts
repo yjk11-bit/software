@@ -5,6 +5,13 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 }
 
+// 构建产物与中间文件放到 OneDrive 之外（Windows 本机）：
+// OneDrive 同步会锁住 build/ 目录导致 mergeDebugResources 失败，且中文路径有隐患；
+// CI（Linux）不满足条件，维持默认位置。
+if (System.getProperty("os.name").startsWith("Windows")) {
+    layout.buildDirectory.set(file("C:/Android/build/studyflow/app"))
+}
+
 android {
     namespace = "cn.csu.studyflow"
     compileSdk = 35
@@ -47,5 +54,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.material3.window.size)
+    implementation(libs.androidx.navigation.compose)
     debugImplementation(libs.androidx.ui.tooling)
 }
