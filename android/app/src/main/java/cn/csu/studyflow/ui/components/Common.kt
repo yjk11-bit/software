@@ -37,6 +37,7 @@ fun StudyFlowTopBar(
     currentScene: Scene,
     onSceneSelect: (String) -> Unit,
     modifier: Modifier = Modifier,
+    onHandwritingTest: () -> Unit = {},
 ) {
     Column(modifier = modifier.background(MaterialTheme.colorScheme.surface)) {
         Row(
@@ -56,6 +57,18 @@ fun StudyFlowTopBar(
                 style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.primary,
             )
+            Spacer(Modifier.width(10.dp))
+            Surface(
+                onClick = onHandwritingTest,
+                shape = RoundedCornerShape(6.dp),
+                color = MaterialTheme.colorScheme.tertiaryContainer,
+            ) {
+                Text(
+                    text = "手写验证",
+                    style = MaterialTheme.typography.labelSmall,
+                    modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
+                )
+            }
         }
         Row(
             modifier = Modifier

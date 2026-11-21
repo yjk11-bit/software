@@ -36,6 +36,7 @@ import cn.csu.studyflow.data.mock.MockData
 import cn.csu.studyflow.ui.components.StudyFlowTopBar
 import cn.csu.studyflow.ui.screens.ChapterNavScreen
 import cn.csu.studyflow.ui.screens.CourseHomeScreen
+import cn.csu.studyflow.ui.screens.HandwritingTestScreen
 import cn.csu.studyflow.ui.screens.LibraryScreen
 import cn.csu.studyflow.ui.screens.ReviewScreen
 
@@ -57,7 +58,7 @@ private val topDests = listOf(
 )
 
 @Composable
-fun StudyFlowApp(windowSizeClass: WindowSizeClass) {
+fun StudyFlowApp(windowSizeClass: WindowSizeClass, startRoute: String = "home") {
     val navController = rememberNavController()
     var sceneId by rememberSaveable { mutableStateOf(MockData.scenes.first().id) }
     val scene = MockData.scenes.first { it.id == sceneId }
@@ -72,6 +73,7 @@ fun StudyFlowApp(windowSizeClass: WindowSizeClass) {
                 scenes = MockData.scenes,
                 currentScene = scene,
                 onSceneSelect = { sceneId = it },
+                onHandwritingTest = { navController.navigateSmart("handwriting") },
             )
         },
         bottomBar = {
@@ -106,10 +108,10 @@ fun StudyFlowApp(windowSizeClass: WindowSizeClass) {
                     }
                 }
                 VerticalDivider()
-                StudyFlowNavHost(navController, scene, wide = true, Modifier.weight(1f))
+                StudyFlowNavHost(navController, scene, wide = true, startRoute = startRoute, Modifier.weight(1f))
             }
         } else {
-            StudyFlowNavHost(navController, scene, wide = false, Modifier.padding(inner))
+            StudyFlowNavHost(navController, scene, wide = false, startRoute = startRoute, Modifier.padding(inner))
         }
     }
 }
@@ -119,9 +121,10 @@ private fun StudyFlowNavHost(
     navController: NavHostController,
     scene: cn.csu.studyflow.data.model.Scene,
     wide: Boolean,
+    startRoute: String = "home",
     modifier: Modifier = Modifier,
 ) {
-    NavHost(navController = navController, startDestination = "home", modifier = modifier) {
+    NavHost(navController = navController, startDestination = startRoute, modifier = modifier) {
         composable("home") {
             CourseHomeScreen(scene = scene, onOpen = { navController.navigateSmart(it) })
         }
@@ -147,6 +150,9 @@ private fun StudyFlowNavHost(
                 sub = entry.arguments?.getString("sub") ?: "review",
                 onSubChange = { navController.navigateSmart("review/$it") },
             )
+        }
+        composable("handwriting") {
+            HandwritingTestScreen()
         }
     }
 }

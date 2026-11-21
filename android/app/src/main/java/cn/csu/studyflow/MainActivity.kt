@@ -20,9 +20,14 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        // 测试入口：adb shell am start -n cn.csu.studyflow/.MainActivity --ez handwriting_test true
+        val startHandwriting = intent?.getBooleanExtra("handwriting_test", false) == true
         setContent {
             StudyFlowTheme {
-                StudyFlowApp(windowSizeClass = calculateWindowSizeClass(this))
+                StudyFlowApp(
+                    windowSizeClass = calculateWindowSizeClass(this),
+                    startRoute = if (startHandwriting) "handwriting" else "home",
+                )
             }
         }
     }
